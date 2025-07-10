@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>To My Princess - Anniversary Letter</title>
+    <link href="https://fonts.googleapis.com/css?family=Pacifico|Dancing+Script|Satisfy|Cookie&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#letter">Letter</a></li>
+            <li><a href="#memories">Memories</a></li>
+            <li><a href="#question">Question</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <section id="envelope-section">
+            <img id="envelope-img" src="assets/envelope_closed.png" alt="Envelope" onclick="openLetter()" />
+            <p class="tap-invite">Tap to open</p>
+        </section>
+
+        <section id="letter-section" class="hidden">
+            <div class="paper-bg flicker">
+                <h1 class="letter-header">💌 To My Princess, My Best Friend, My Everything</h1>
+                <div class="letter-body">
+                    <img src="assets/letter_image.jpg" alt="Love Letter" style="width: 100%; max-width: 700px;">
+                    <div class="image-sparkle"></div>
+                </div>
+                <div class="signature">
+                    <span>Forever yours,<br>Vivek 🤍</span>
+                </div>
+                <div class="animated-flower">🌸</div>
+            </div>
+        </section>
+
+        <section id="memories" class="hidden">
+            <h2>Our Memories</h2>
+            <div class="memory-grid">
+                <img src="assets/memory1.jpg" alt="Memory 1">
+                <img src="assets/memory2.jpg" alt="Memory 2">
+                </div>
+            <button id="next-memory-btn">Next Memory ✨</button>
+        </section>
+
+        <section id="question" class="hidden">
+            <h2>A Little Question...</h2>
+            <p>Who is the most beautiful girl in the world?</p>
+            <input type="text" id="answer">
+            <button onclick="checkAnswer()">Submit</button>
+            <div id="result"></div>
+            <p id="hint">Hint: My Princess</p>
+            <div id="correct-indicator" class="hidden">✅</div>
+        </section>
+    </div>
+
+    <div id="mouse-trail"></div>
+    <div id="hearts-animation"></div>
+    <script src="script.js"></script>
+</body>
+</html>

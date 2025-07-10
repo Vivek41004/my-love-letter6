@@ -1,0 +1,421 @@
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    background: radial-gradient(ellipse at top left, #28243d 80%, #1c1524 100%);
+    font-family: 'Dancing Script', 'Pacifico', 'Satisfy', cursive, sans-serif;
+    color: #fff6e9;
+    overflow-x: hidden;
+    cursor: url('assets/custom_cursor.png'), auto; /* Optional: Add a custom cursor */
+}
+
+/* Custom Cursor (create a small heart or star PNG for this) */
+/* Example: assets/custom_cursor.png - a small (e.g., 16x16px or 24x24px) transparent heart */
+
+nav {
+    background-color: rgba(40, 36, 61, 0.7);
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(5px); /* Add a subtle blur to the navbar */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: #ffb6dc;
+    text-decoration: none;
+    font-size: 1.2em;
+    font-family: 'Satisfy', cursive;
+    transition: color 0.3s ease, transform 0.2s ease; /* Add transform for bounce */
+}
+
+nav a:hover {
+    color: #f8e9ff;
+    transform: translateY(-3px) scale(1.05); /* Small bounce on hover */
+}
+
+.container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding-top: 60px;
+}
+
+#envelope-section {
+    margin-top: 50px;
+    text-align: center;
+    animation: float 5s infinite ease-in-out; /* Keep the existing float */
+}
+
+#envelope-img {
+    width: 240px;
+    max-width: 70vw;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: transform 0.5s cubic-bezier(0.55, 0, 0.1, 1);
+    filter: drop-shadow(0 0 16px #9d6df6cc);
+    border-radius: 24px;
+}
+
+#envelope-img:active {
+    transform: scale(1.06) rotate(-2deg);
+}
+
+.tap-invite {
+    font-size: 1.25em;
+    color: #ffb6dc;
+    margin-top: 15px;
+    text-shadow: 0 2px 10px #471e32aa;
+    font-family: 'Satisfy', cursive;
+    animation: heartPulse 1.7s infinite, bounceText 1s infinite alternate; /* Combine pulse with new bounce */
+    letter-spacing: 2px;
+}
+
+@keyframes heartPulse {
+    0%, 100% { opacity: 1; }
+    40% { opacity: 0.5; transform: scale(1.1);}
+    80% { opacity: 1; }
+}
+
+@keyframes bounceText {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-5px); }
+}
+
+#letter-section {
+    min-width: 320px;
+    text-align: center;
+    margin-top: 20px;
+    z-index: 2;
+    animation: fadeIn 0.9s;
+}
+
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(60px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+.hidden { display: none; }
+
+.paper-bg {
+    background: linear-gradient(135deg, rgba(36,28,44,0.95) 80%, #22192b 100%), url('assets/bg_dark_paper.jpg');
+    background-blend-mode: lighten;
+    box-shadow: 0 12px 40px #1e0e2190, 0 0px 2px #61475c70 inset;
+    border-radius: 26px;
+    border: 1.5px solid #b58bd8;
+    padding: 38px 26px 18px 26px;
+    margin: auto;
+    max-width: 700px;
+    position: relative;
+    filter: drop-shadow(0 2px 10px #b68bf880);
+    transition: box-shadow 0.3s;
+}
+
+.flicker {
+    animation: flicker 2.2s infinite alternate;
+}
+
+@keyframes flicker {
+    0%,18%,22%,25%,53%,100% { box-shadow: 0 8px 36px #c084fc33, 0 0 24px #8A2BE244;}
+    20%,24%,30%,48% { box-shadow: 0 12px 56px #ae6bfb44, 0 0 40px #d1a1fa44;}
+}
+
+.letter-header {
+    font-family: 'Pacifico', cursive;
+    font-size: 1.7em;
+    margin-bottom: 10px;
+    color: #febfc6;
+    text-shadow: 0 3px 16px #b68bf6bb;
+    letter-spacing: 1px;
+    animation: textPopIn 1.5s cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards; /* New pop-in animation */
+    opacity: 0; /* Start hidden */
+}
+
+@keyframes textPopIn {
+    0% { opacity: 0; transform: translateY(-50px) scale(0.5); }
+    60% { opacity: 1; transform: translateY(10px) scale(1.1); }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.letter-body {
+    margin-top: 14px;
+    font-size: 1.13em;
+    line-height: 1.53em;
+    color: #f8e9ff;
+    text-shadow: 0 1px 2px #26142780;
+    letter-spacing: 0.5px;
+    font-family: 'Dancing Script', cursive;
+    position: relative; /* For the sparkle effect */
+}
+
+/* Image Sparkle Effect */
+.image-sparkle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%);
+    border-radius: 50%;
+    animation: twinkle 3s infinite ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
+    20% { opacity: 0.8; transform: translate(-50%, -50%) scale(1); }
+    40% { opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
+    100% { opacity: 0; }
+}
+
+.signature {
+    font-family: 'Satisfy', 'Cookie', cursive;
+    color: #bc96c7;
+    font-size: 1.1em;
+    margin: 30px 0 8px 0;
+    text-align: right;
+    text-shadow: 0 2px 8px #4e196080;
+    animation: slideInRight 1.2s ease-out forwards; /* New slide-in animation */
+    opacity: 0; /* Start hidden */
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+/* Animated Flower */
+.animated-flower {
+    position: absolute;
+    bottom: 10px; /* Adjust position as needed */
+    right: 10px; /* Adjust position as needed */
+    font-size: 2.5em;
+    animation: rotateAndScale 4s infinite ease-in-out alternate;
+    transform-origin: center bottom;
+}
+
+@keyframes rotateAndScale {
+    0% { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(15deg) scale(1.1); }
+    100% { transform: rotate(0deg) scale(1); }
+}
+
+/* Memories Section */
+#memories {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.memory-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.memory-grid img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.memory-grid img:hover {
+    transform: scale(1.1) rotate(2deg); /* Slightly rotate on hover */
+    filter: brightness(1.1); /* Brighten on hover */
+}
+
+/* "Next Memory" button animation */
+#next-memory-btn {
+    padding: 12px 24px;
+    background-color: #ff8ad8; /* A brighter pink */
+    color: #fff;
+    border: none;
+    border-radius: 30px; /* More rounded */
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 138, 216, 0.4);
+}
+
+#next-memory-btn:hover {
+    background-color: #ff6bcc;
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 20px rgba(255, 107, 204, 0.6);
+}
+
+#next-memory-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 3px 10px rgba(255, 138, 216, 0.4);
+}
+
+/* Question Section */
+#question {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#answer {
+    padding: 8px;
+    margin: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff6e9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#answer:focus {
+    outline: none;
+    border-color: #ffb6dc;
+    box-shadow: 0 0 8px rgba(255, 182, 220, 0.6);
+}
+
+button {
+    padding: 8px 16px;
+    background-color: #ffb6dc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #e096ba;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+#result {
+    margin-top: 10px;
+    font-size: 1.2em;
+}
+
+#result img {
+    max-width: 200px;
+    max-height: 200px;
+    border-radius: 10px;
+}
+
+#hint {
+    margin-top: 10px;
+    font-style: italic;
+    color: #aaa;
+}
+
+/* Correct Answer Indicator */
+#correct-indicator {
+    font-size: 3em;
+    animation: popInAndFadeOut 1.5s forwards;
+    position: relative;
+    top: 10px;
+    display: inline-block; /* Ensure animation works */
+}
+
+@keyframes popInAndFadeOut {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); opacity: 1; }
+    100% { transform: scale(1); opacity: 0; }
+}
+
+/* Mouse Trail Hearts */
+#mouse-trail {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 9998; /* Below falling hearts */
+}
+
+.trail-heart {
+    position: absolute;
+    font-size: 1.2em;
+    opacity: 0;
+    animation: fadeOutTrail 1s forwards;
+    pointer-events: none;
+    transform: translate(-50%, -50%); /* Center the heart on the cursor */
+}
+
+@keyframes fadeOutTrail {
+    from { opacity: 1; transform: scale(1) translate(-50%, -50%); }
+    to { opacity: 0; transform: scale(0.5) translate(-50%, -50%); }
+}
+
+
+/* Hearts Animation */
+#hearts-animation {
+    position: fixed;
+    pointer-events: none;
+    top: 0; left: 0; width: 100vw; height: 100vh; z-index: 9999;
+}
+
+.falling-heart {
+    position: fixed;
+    top: -40px;
+    font-size: 2.6em;
+    animation: fall 4.8s linear forwards, sway 3.2s ease-in-out infinite alternate;
+    pointer-events: none;
+    z-index: 999;
+}
+
+@keyframes fall {
+    0% { opacity: 1; }
+    80% { opacity: 0.94; }
+    100% { top: 120vh; opacity: 0; }
+}
+
+@keyframes sway {
+    from { transform: translateX(0) rotate(-4deg);}
+    to { transform: translateX(28px) rotate(4deg);}
+}
+
+/* Cute Animations */
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Add animation to memories section images */
+.memory-grid img {
+    animation: fadeIn 1s ease;
+}
+
+section {
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 15px;
+    background-color: rgba(40, 36, 61, 0.5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
